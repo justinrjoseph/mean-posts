@@ -1,0 +1,37 @@
+<mat-toolbar [color]="'primary'">
+  <span>
+    <a [routerLink]="['/']">MyMessages</a>
+  </span>
+
+  <span class="spacer"></span>
+
+  <ul>
+    <ng-template
+      *ngIf="loggedIn; then activeUser else anonymousUser">
+    </ng-template>
+
+    <ng-template #anonymousUser>
+      <li>
+        <a mat-button [routerLink]="['/auth/register']" [routerLinkActive]="'mat-accent'">
+          Register
+        </a>
+      </li>
+      <li>
+        <a mat-button [routerLink]="['/auth/login']" [routerLinkActive]="'mat-accent'">
+          Log In
+        </a>
+      </li>
+    </ng-template>
+
+    <ng-template #activeUser>
+      <li>
+        <a mat-button [routerLink]="['/create']" [routerLinkActive]="'mat-accent'">
+          New Post
+        </a>
+      </li>
+      <li>
+        <a mat-button (click)="logout()">Log Out</a>
+      </li>
+    </ng-template>
+  </ul>
+</mat-toolbar>

@@ -1,0 +1,41 @@
+<mat-card>
+  <ng-template
+    *ngIf="isLoading; then spinner else showForm">
+  </ng-template>
+
+  <ng-template #spinner>
+    <mat-spinner></mat-spinner>
+  </ng-template>
+
+  <ng-template #showForm>
+    <form [formGroup]="form" #f="ngForm" (ngSubmit)="register()">
+      <mat-form-field>
+        <input
+          type="email"
+          placeholder="Email"
+          matInput
+          [formControlName]="'email'"
+          #emailInput>
+        <mat-error *ngIf="email.invalid">Email is required.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          type="password"
+          placeholder="Password"
+          autocomplete
+          matInput
+          [formControlName]="'password'">
+        <mat-error *ngIf="password.invalid">Password is required.</mat-error>
+      </mat-form-field>
+
+      <button
+        type="submit"
+        mat-raised-button
+        [color]="'accent'"
+        [disabled]="form.invalid">
+        Register
+      </button>
+    </form>
+  </ng-template>
+</mat-card>
